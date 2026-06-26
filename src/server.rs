@@ -1749,6 +1749,7 @@ fn read_native_session(file_path: String) -> Result<String, String> {
         home.join(".codex").join("sessions"),
         home.join(".qwen").join("projects"),
         home.join(".config").join("opencode"),
+        home.join(".local").join("share").join("opencode").join("db"),
         home.join(".openclaw").join("agents"),
         // Antigravity CLI lives under `.gemini/antigravity-cli/` (shares
         // namespace with retiring Gemini CLI). `~/.antigravitycli/` is
@@ -1763,7 +1764,7 @@ fn read_native_session(file_path: String) -> Result<String, String> {
     if hermes_legacy != hermes_root {
         allowed.push(hermes_legacy);
     }
-    for tool in ["claude", "hermes", "codex", "antigravity", "qwen", "opencode", "openclaw"] {
+    for tool in ["claude", "hermes", "codex", "antigravity", "qwen", "opencode", "openclaw", "nga"] {
         let cfg = crate::tool_config::get(tool).history_path;
         if !cfg.is_empty() {
             allowed.push(crate::tool_config::expand_path(&cfg));
@@ -2143,9 +2144,9 @@ fn parse_opencode_session(file_path: &std::path::Path, message_dir: &std::path::
     })
 }
 
-fn find_opencode_sessions(base_dir: std::path::PathBuf, result: &mut Vec<SavedSession>) {
+fn find_opencode_sessions(base_dir: std::path::PathBuf, db_name: &str, result: &mut Vec<SavedSession>) {
     // Prefer SQLite DB (current OpenCode format) over legacy JSON files
-    let db_path = base_dir.join("opencode.db");
+    let db_path = base_dir.join(db_name);
     if db_path.is_file() {
         find_drizzle_sessions_sqlite(&db_path, "opencode", "OpenCode Session", result);
         return;
@@ -2563,7 +2564,15 @@ fn load_native_history_blocking() -> Result<Vec<SavedSession>, String> {
     // SavedSession objects directly.
     if let Some(home) = home.as_ref() {
         if let Some(opencode_dir) = opencode_root(home) {
-            find_opencode_sessions(opencode_dir, &mut result);
+            find_opencode_sessions(opencode_dir, "opencode.db", &mut result);
+        }
+    }
+
+    // NGA CLI second pass — points to `~/.local/share/opencode/db/ngagent.db`,
+    // same SQLite schema as OpenCode.
+    if let Some(home) = home.as_ref() {
+        if let Some(nga_dir) = nga_root(home) {
+            find_opencode_sessions(nga_dir, "ngagent.db", &mut result);
         }
     }
 
@@ -2628,6 +2637,15 @@ fn collect_registry_history_candidates(
 /// practice, but keeps the call sites total.
 fn opencode_root(home: &std::path::Path) -> Option<std::path::PathBuf> {
     let tool = crate::tools::find("opencode")?;
+    let shape = tool.history_shape.as_ref()?;
+    Some(crate::tool_config::history_path_for(tool.id, shape.join_under(home)))
+}
+
+/// Resolve NGA CLI's session-store root (same mechanism as
+/// `opencode_root` but for the "nga" tool which points to
+/// `~/.local/share/opencode/db/ngagent.db`).
+fn nga_root(home: &std::path::Path) -> Option<std::path::PathBuf> {
+    let tool = crate::tools::find("nga")?;
     let shape = tool.history_shape.as_ref()?;
     Some(crate::tool_config::history_path_for(tool.id, shape.join_under(home)))
 }
@@ -2763,6 +2781,19 @@ fn load_message_heatmap_blocking() -> Result<Vec<HeatmapEntry>, String> {
     // frontend would discard anyway.
     if let Some(home) = home.as_ref() {
         if let Some(db_path) = opencode_root(home).map(|r| r.join("opencode.db")) {
+            if db_path.is_file() {
+                let cutoff_secs = cutoff
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .map(|d| d.as_secs() as i64)
+                    .unwrap_or(0);
+                collect_opencode_heatmap_entries(&db_path, cutoff_secs, &mut out);
+            }
+        }
+    }
+
+    // NGA CLI heatmap second pass — points to `~/.local/share/opencode/db/ngagent.db`.
+    if let Some(home) = home.as_ref() {
+        if let Some(db_path) = nga_root(home).map(|r| r.join("ngagent.db")) {
             if db_path.is_file() {
                 let cutoff_secs = cutoff
                     .duration_since(std::time::UNIX_EPOCH)
