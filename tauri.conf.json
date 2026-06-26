@@ -1,12 +1,12 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "NGA CLI",
-  "version": "2.8.7",
+  "version": "2.8.8",
   "identifier": "com.ngacli.desktop",
   "build": {
     "frontendDist": "./src-ui/dist",
     "devUrl": "http://localhost:5173",
-    "beforeBuildCommand": "",
+    "beforeBuildCommand": { "script": "npm run build", "cwd": "./src-ui" },
     "beforeDevCommand": { "script": "npm run dev", "cwd": "./src-ui" }
   },
 
