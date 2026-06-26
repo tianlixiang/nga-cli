@@ -786,7 +786,33 @@ function TierTerminalImpl({
       const initialCols = term.cols || 80;
       const initialRows = term.rows || 24;
 
+      let resumeInfo: { savedSessionId: string; sessionToken: string; cwd: string } | null = null;
+      if (toolData) {
+        try {
+          const parsed = JSON.parse(toolData);
+          if (parsed && parsed.__resume) {
+            resumeInfo = {
+              savedSessionId: parsed.savedSessionId,
+              sessionToken: parsed.sessionToken,
+              cwd: parsed.cwd || '',
+            };
+          }
+        } catch {}
+      }
+
+      if (resumeInfo && tool) {
+        await commands.tierTerminalResume(
+          resumeInfo.savedSessionId,
+          sessionId,
+          tool,
+          resumeInfo.sessionToken,
+          initialCols,
+          initialRows,
+          resumeInfo.cwd,
+        );
+      } else {
         await commands.tierTerminalStart(sessionId, tool, initialCols, initialRows, theme, lang, toolData, folderPath ?? undefined);
+      }
 
         // After PTY is running, wait two frames for layout to settle then
         // send the true terminal size. This fixes TUI adaptive-width tools

@@ -1748,7 +1748,7 @@ fn read_native_session(file_path: String) -> Result<String, String> {
         hermes_root.clone(),
         home.join(".codex").join("sessions"),
         home.join(".qwen").join("projects"),
-        home.join(".config").join("opencode"),
+        home.join(".local").join("share").join("opencode"),
         home.join(".local").join("share").join("opencode").join("db"),
         home.join(".openclaw").join("agents"),
         // Antigravity CLI lives under `.gemini/antigravity-cli/` (shares
@@ -1780,10 +1780,10 @@ fn read_native_session(file_path: String) -> Result<String, String> {
 // ─── OpenCode Session Reader ─────────────────────────────────────────────────
 //
 // OpenCode stores chat history in two layouts depending on version:
-//   • SQLite (current):  `~/.config/opencode/opencode.db`
+//   • SQLite (current):  `~/.local/share/opencode/opencode.db`
 //                         tables `message` (role + metadata) + `part`
 //                         (text/tool blocks), joined by message_id.
-//   • JSON  (legacy):    `~/.config/opencode/storage/message/<sid>/*.json`
+//   • JSON  (legacy):    `~/.local/share/opencode/storage/message/<sid>/*.json`
 //                         one file per message, content blocks inline.
 //
 // Both are normalized to the same JSONL shape that ChatReader.tsx already
@@ -1941,14 +1941,9 @@ fn read_opencode_json_dir(message_dir: &std::path::Path) -> Result<String, Strin
 fn read_opencode_session(session_id: String) -> Result<String, String> {
     let home = dirs::home_dir().ok_or("Cannot determine home directory")?;
 
-    // Honor user-configured OpenCode history path from
-    // ~/.nga-cli/tools.json (same source the listing pass uses
-    // at line ~2129). Falls through to the platform default
-    // ~/.config/opencode when the user hasn't customized it.
-    let opencode_root = crate::tool_config::history_path_for(
-        "opencode",
-        home.join(".config").join("opencode"),
-    );
+    // Resolve root from tool descriptor (respects user overrides in tools.json).
+    let opencode_root = opencode_root(&home)
+        .ok_or("OpenCode history root not configured")?;
 
     // Prefer current SQLite layout.
     let db_path = opencode_root.join("opencode.db");

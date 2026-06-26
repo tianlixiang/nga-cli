@@ -280,22 +280,23 @@ export function ChatReader({ sessionId }: { sessionId: string }) {
     let targetId = state.activeTerminalId;
     const currentTerminal = state.terminals.find(t => t.id === targetId);
 
+    const resumeData = JSON.stringify({
+      __resume: true,
+      savedSessionId: currentSession.id,
+      sessionToken: currentSession.session_token,
+      cwd: currentSession.cwd,
+    });
+
     if (currentTerminal?.tool !== null) {
       targetId = crypto.randomUUID();
       dispatch({
         type: 'ADD_TERMINAL',
-        session: { id: targetId, tool: currentSession.tool as any, folderPath: currentSession.cwd }
+        session: { id: targetId, tool: currentSession.tool as any, folderPath: currentSession.cwd, toolData: resumeData }
       });
     } else if (targetId) {
-      dispatch({ type: 'SET_TERMINAL_TOOL', id: targetId, tool: currentSession.tool as any });
+      dispatch({ type: 'SET_TERMINAL_TOOL', id: targetId, tool: currentSession.tool as any, toolData: resumeData });
       dispatch({ type: 'SET_FOLDER', path: currentSession.cwd });
     }
-
-    if (!targetId) return;
-
-    commands.tierTerminalResume(
-      currentSession.id, targetId, currentSession.tool, currentSession.session_token, 80, 24, currentSession.cwd
-    ).catch(console.error);
   };
 
   return (
