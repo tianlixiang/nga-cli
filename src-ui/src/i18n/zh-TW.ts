@@ -1,0 +1,124 @@
+export const zhTW = {
+  'app.title': 'NGA CLI',
+  'explorer.tab.workspace': '工作區',
+  'explorer.tab.history': '會話記錄',
+  'explorer.workspace.select-dir': '點擊選擇工作目錄',
+
+  // Context Menu
+  'menu.copy_abs': '複製絕對路徑',
+  'menu.copy_rel': '複製相對路徑',
+  'menu.copy_ref': '複製為 @reference',
+  'menu.cut': '剪下',
+  'menu.copy': '複製',
+  'menu.paste': '貼上',
+  'menu.select_all': '全選',
+  'menu.rename': '重新命名',
+  'menu.delete': '刪除',
+  'menu.show_in_folder': '在檔案總管中顯示',
+  'menu.open': '開啟',
+
+
+  // Tools
+  'tool.terminal': '終端機',
+  'tool.remote': '遠端終端機',
+  'library.agent_tools': 'Agent 工具',
+  'sentinel.protocol': '哨兵協議',
+  'tool.two_split': '獨立二屏',
+  'tool.three_split': '獨立三屏',
+  'tool.four_split': '獨立四屏',
+  'tool_config.command': '啟動命令',
+  'tool_config.extra_args': '額外參數',
+  'tool_config.default_cwd': '啟動目錄',
+  'tool_config.history_path': '歷史對話目錄',
+  'tool_config.reset': '重設',
+  'tool_config.cancel': '取消',
+  'tool_config.save': '儲存',
+
+  // Remote Terminal
+  'remote.title': '遠端終端機',
+  'remote.host': '伺服器位址',
+  'remote.host_placeholder': '例如 192.168.1.100',
+  'remote.username': '使用者名稱',
+  'remote.password': '密碼',
+  'remote.connect': '連線',
+  'remote.connecting': '連線中...',
+  'remote.connect_failed': '連線失敗',
+
+  'tab.new': '選擇工具',
+  'chat.no_records': '沒有可讀的對話記錄。',
+
+
+  // Task Board
+  'task.notes_placeholder': '新增備註...',
+  'task.section.working': '進行中',
+  'task.section.todo': '待辦',
+  'task.section.done': '已完成',
+  'task.greeting.morning': '早安，今天想做些什麼？',
+  'task.greeting.afternoon': '午安，還有什麼要做的？',
+  'task.greeting.evening': '晚安，想來點大事嗎？',
+  'task.tab.tasks': '任務列表',
+  'task.tab.changes': '修改記錄',
+  'changes.empty': '暫無修改。',
+  'diff.loading': '載入中…',
+  'diff.error': '無法載入差異',
+  'diff.no_changes': '與基線一致',
+  'diff.too_large': '檔案較大,未渲染逐行差異',
+  'diff.unchanged_lines': '⋯ {count} 行未變更',
+  'task.default_title': '新任務',
+  'task.search_sessions': '搜尋歷史對話...',
+  'menu.no_recent': '沒有任何近期對話',
+  'task.messages': '{count} 則訊息',
+
+  // Actions
+  'action.resume_terminal': '繼續此次對話',
+
+  // Time
+  'time.just_now': '剛剛',
+  'time.today': '今天',
+  'time.yesterday': '昨天',
+  'time.days_ago': '{days} 天前',
+
+  // Session
+  'session.max': '最多只能同時開啟 5 個會話。',
+
+  // Theme Menu
+  'theme.section.color': '配色',
+  'theme.section.shape': '形態',
+  'theme.section.icons': '圖示風格',
+  'theme.color.light': '明亮',
+  'theme.color.dark': '暗黑',
+  'theme.color.cappuccino': '代碼夜',
+  'theme.color.sakura': '夜櫻',
+  'theme.color.lavender': '薰衣草霧',
+  'theme.color.mint': '薄荷深海',
+  'theme.color.obsidian': '黑曜石',
+  'theme.color.cobalt': '鈷藍',
+  'theme.color.moss': '苔蘚',
+  'theme.color.crimson': '暗紅',
+  'theme.color.sunset': '落日橙',
+  'theme.color.amber': '琥珀',
+  'theme.color.emerald': '翠綠',
+  'theme.color.teal': '青碧',
+  'theme.color.indigo': '靛藍',
+  'theme.color.fuchsia': '品紅',
+
+  // Gambit · 妙手
+  'gambit.title': '妙手',
+  'gambit.placeholder': '靜心琢磨，再落子... (Ctrl+Enter 發送, Enter 換行, 可貼上圖片)',
+  'gambit.send_failed_hint': '請先開啟活動工作階段',
+  'gambit.send_empty_hint': '先輸入內容或貼上圖片 (Ctrl+V)',
+
+
+  'heatmap.title': '{sessions} 次對話、{messages} 則訊息',
+  'heatmap.title_empty': '故事還沒開始 — 跟 AI 聊起來，點亮你的第一格',
+  'heatmap.legend_less': '少',
+  'heatmap.legend_more': '多',
+  'heatmap.tooltip_some': '{date} · {count} 則訊息',
+  'heatmap.tooltip_one': '{date} · 1 則訊息',
+  'heatmap.tooltip_none': '{date} · 沒有活動',
+
+  // Skills 面板開關提示
+  'skills.toast.enabled': '已啟用',
+  'skills.toast.disabled': '已關閉',
+
+} as const;

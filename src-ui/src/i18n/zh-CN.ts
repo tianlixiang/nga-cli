@@ -1,0 +1,125 @@
+export const zhCN = {
+  'app.title': 'NGA CLI',
+  'explorer.tab.workspace': '工作区',
+  'explorer.tab.history': '会话记录',
+  'explorer.workspace.select-dir': '点击选择工作目录',
+
+  // Context Menu
+  'menu.copy_abs': '复制绝对路径',
+  'menu.copy_rel': '复制相对路径',
+  'menu.copy_ref': '复制为 @reference',
+  'menu.cut': '剪切',
+  'menu.copy': '复制',
+  'menu.paste': '粘贴',
+  'menu.select_all': '全选',
+  'menu.rename': '重命名',
+  'menu.delete': '删除',
+  'menu.show_in_folder': '在文件管理器中显示',
+  'menu.open': '打开',
+
+
+  // Tools
+  'tool.terminal': '终端',
+  'tool.remote': '远程终端',
+  'library.agent_tools': 'Agent 工具',
+  'sentinel.protocol': '哨兵协议',
+  'tool.two_split': '独立二屏',
+  'tool.three_split': '独立三屏',
+  'tool.four_split': '独立四屏',
+  'tool_config.command': '启动命令',
+  'tool_config.extra_args': '额外参数',
+  'tool_config.default_cwd': '启动目录',
+  'tool_config.history_path': '历史对话目录',
+  'tool_config.reset': '重置',
+  'tool_config.cancel': '取消',
+  'tool_config.save': '保存',
+
+  // Remote Terminal
+  'remote.title': '远程终端',
+  'remote.host': '服务器地址',
+  'remote.host_placeholder': '例如 192.168.1.100',
+  'remote.username': '用户名',
+  'remote.password': '密码',
+  'remote.connect': '连接',
+  'remote.connecting': '连接中...',
+  'remote.connect_failed': '连接失败',
+
+  'tab.new': '选择工具',
+  'chat.no_records': '没有可读的对话记录。',
+
+
+  // Task Board
+  'task.notes_placeholder': '添加备注...',
+  'task.section.working': '进行中',
+  'task.section.todo': '待办',
+  'task.section.done': '已完成',
+  'task.greeting.morning': '早，今天想做点什么',
+  'task.greeting.afternoon': '下午好，还有什么要做的？',
+  'task.greeting.evening': '晚上好，想干点什么大事？',
+  'task.tab.tasks': '任务列表',
+  'task.tab.changes': '修改记录',
+  'changes.empty': '暂无修改。',
+  'diff.loading': '加载中…',
+  'diff.error': '无法加载差异',
+  'diff.no_changes': '与基线一致',
+  'diff.too_large': '文件较大,未渲染逐行差异',
+  'diff.unchanged_lines': '⋯ {count} 行未改动',
+  'task.default_title': '新任务',
+  'task.search_sessions': '搜索历史对话...',
+  'menu.no_recent': '没有任何近期会话',
+  'task.messages': '{count} 条消息',
+
+  // Actions
+  'action.resume_terminal': '继续本轮对话',
+
+  // Time
+  'time.just_now': '刚刚',
+  'time.today': '今天',
+  'time.yesterday': '昨天',
+  'time.days_ago': '{days}天前',
+
+  // Session
+  'session.max': '最多只能同时打开 5 个会话。',
+
+  // Theme Menu
+  'theme.section.color': '配色',
+  'theme.section.shape': '形态',
+  'theme.section.icons': '图标风格',
+  'theme.color.light': '明亮',
+  'theme.color.dark': '暗黑',
+  'theme.color.cappuccino': '代码夜',
+  'theme.color.sakura': '夜樱',
+  'theme.color.lavender': '薰衣草雾',
+  'theme.color.mint': '薄荷深海',
+  'theme.color.obsidian': '黑曜石',
+  'theme.color.cobalt': '钴蓝',
+  'theme.color.moss': '苔藓',
+  'theme.color.crimson': '暗红',
+  'theme.color.sunset': '落日橙',
+  'theme.color.amber': '琥珀',
+  'theme.color.emerald': '翠绿',
+  'theme.color.teal': '青碧',
+  'theme.color.indigo': '靛蓝',
+  'theme.color.fuchsia': '品红',
+
+  // Gambit · 妙手
+  'gambit.title': '妙手',
+  'gambit.placeholder': '静心琢磨，再落子... (Ctrl+Enter 发送, Enter 换行, 可粘贴图片)',
+  'gambit.send_failed_hint': '请先打开活动会话',
+  'gambit.send_empty_hint': '先输入内容或粘贴图片 (Ctrl+V)',
+
+
+  // 贡献热力图（桌面 Launchpad 上的 6 张卡片上方）
+  'heatmap.title': '{sessions} 次会话、{messages} 条消息',
+  'heatmap.title_empty': '故事还没开始 — 跟 AI 聊起来，点亮你的第一格',
+  'heatmap.legend_less': '少',
+  'heatmap.legend_more': '多',
+  'heatmap.tooltip_some': '{date} · {count} 条消息',
+  'heatmap.tooltip_one': '{date} · 1 条消息',
+  'heatmap.tooltip_none': '{date} · 没有活动',
+
+  // Skills 面板开关提示
+  'skills.toast.enabled': '已启用',
+  'skills.toast.disabled': '已关闭',
+
+} as const;

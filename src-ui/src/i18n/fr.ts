@@ -1,0 +1,120 @@
+export const fr = {
+  'app.title': 'NGA CLI',
+  'explorer.tab.workspace': 'Espace de travail',
+  'explorer.tab.history': 'Sessions',
+  'explorer.workspace.select-dir': 'Cliquer pour choisir le dossier de travail',
+
+  // Context Menu
+  'menu.copy_abs': 'Copier le chemin absolu',
+  'menu.copy_rel': 'Copier le chemin relatif',
+  'menu.copy_ref': 'Copier comme @reference',
+  'menu.cut': 'Couper',
+  'menu.copy': 'Copier',
+  'menu.paste': 'Coller',
+  'menu.select_all': 'Tout sélectionner',
+  'menu.rename': 'Renommer',
+  'menu.delete': 'Supprimer',
+  'menu.show_in_folder': 'Afficher dans l\u2019explorateur',
+  'menu.open': 'Ouvrir',
+
+
+  // Tools
+  'tool.terminal': 'Terminal',
+  'tool.remote': 'Terminal distant',
+  'library.agent_tools': 'Outils Agent',
+  'sentinel.protocol': 'Protocole Sentinelle',
+  'tool.two_split': 'Double indépendant',
+  'tool.three_split': 'Triple indépendant',
+  'tool.four_split': 'Quadruple indépendant',
+  'tool_config.command': 'Commande de lancement',
+  'tool_config.extra_args': 'Arguments supplémentaires',
+  'tool_config.default_cwd': 'Répertoire de lancement',
+  'tool_config.history_path': 'Répertoire d\'historique des sessions',
+  'tool_config.reset': 'Réinitialiser',
+  'tool_config.cancel': 'Annuler',
+  'tool_config.save': 'Enregistrer',
+
+  // Remote Terminal
+  'remote.title': 'Terminal distant',
+  'remote.host': 'Hôte',
+  'remote.host_placeholder': 'ex. 192.168.1.100',
+  'remote.username': 'Nom d\u2019utilisateur',
+  'remote.password': 'Mot de passe',
+  'remote.connect': 'Connexion',
+  'remote.connecting': 'Connexion en cours...',
+  'remote.connect_failed': 'Échec de connexion',
+
+  'tab.new': 'Choisir un outil',
+  'chat.no_records': 'Aucun enregistrement de conversation lisible trouvé.',
+
+
+  // Task Board
+  'task.notes_placeholder': 'Ajouter des notes...',
+  'task.section.working': 'En cours',
+  'task.section.todo': 'À faire',
+  'task.section.done': 'Terminé',
+  'task.greeting.morning': 'Bonjour, quel est le programme ?',
+  'task.greeting.afternoon': 'Bon après-midi, encore des choses à faire ?',
+  'task.greeting.evening': 'Bonsoir. Un projet ambitieux ?',
+  'task.tab.tasks': 'Liste des tâches',
+  'task.tab.changes': 'Historique',
+  'changes.empty': 'Aucune modification pour le moment.',
+  'diff.loading': 'Chargement…',
+  'diff.error': 'Échec du chargement du diff',
+  'diff.no_changes': 'Identique à la baseline',
+  'diff.too_large': 'Fichier trop volumineux pour afficher le diff',
+  'diff.unchanged_lines': '⋯ {count} lignes inchangées',
+  'task.default_title': 'Nouvelle tâche',
+  'task.search_sessions': 'Rechercher des sessions...',
+  'menu.no_recent': 'Aucune session récente',
+  'task.messages': '{count} messages',
+
+  // Actions
+  'action.resume_terminal': 'Reprendre cette session',
+
+  // Time
+  'time.just_now': 'À l\u2019instant',
+  'time.today': 'Aujourd\u2019hui',
+  'time.yesterday': 'Hier',
+  'time.days_ago': 'Il y a {days} jours',
+
+  // Session
+  'session.max': 'Vous ne pouvez pas ouvrir plus de 5 sessions simultanément.',
+
+  // Theme Menu
+  'theme.section.color': 'Couleurs',
+  'theme.section.shape': 'Forme',
+  'theme.section.icons': 'Icônes',
+  'theme.color.light': 'Clair',
+  'theme.color.dark': 'Sombre',
+  'theme.color.cappuccino': 'Code Dark',
+  'theme.color.sakura': 'Sakura',
+  'theme.color.lavender': 'Lavande',
+  'theme.color.mint': 'Menthe',
+  'theme.color.obsidian': 'Obsidienne',
+  'theme.color.cobalt': 'Cobalt',
+  'theme.color.moss': 'Mousse',
+  'theme.color.crimson': 'Cramoisi',
+  'theme.color.sunset': 'Couchant',
+  'theme.color.amber': 'Ambre',
+  'theme.color.emerald': 'Émeraude',
+  'theme.color.teal': 'Sarcelle',
+  'theme.color.indigo': 'Indigo',
+  'theme.color.fuchsia': 'Fuchsia',
+
+
+  'gambit.send_failed_hint': "Ouvrez d'abord une session active",
+
+  'heatmap.title': '{sessions} sessions · {messages} messages',
+  'heatmap.title_empty': 'L\'histoire n\'a pas encore commencé — discutez avec une IA pour allumer votre première case',
+  'heatmap.legend_less': 'Moins',
+  'heatmap.legend_more': 'Plus',
+  'heatmap.tooltip_some': '{count} messages le {date}',
+  'heatmap.tooltip_one': '1 message le {date}',
+  'heatmap.tooltip_none': 'Aucune activité le {date}',
+
+  // Toasts du panneau Skills
+  'skills.toast.enabled': 'Activée',
+  'skills.toast.disabled': 'Désactivée',
+
+} as const;

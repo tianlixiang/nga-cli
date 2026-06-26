@@ -1,0 +1,124 @@
+export const ko = {
+  'app.title': 'NGA CLI',
+  'explorer.tab.workspace': '작업 공간',
+  'explorer.tab.history': '세션 기록',
+  'explorer.workspace.select-dir': '클릭하여 작업 디렉토리 선택',
+
+  // Context Menu
+  'menu.copy_abs': '절대 경로 복사',
+  'menu.copy_rel': '상대 경로 복사',
+  'menu.copy_ref': '@reference로 복사',
+  'menu.cut': '잘라내기',
+  'menu.copy': '복사',
+  'menu.paste': '붙여넣기',
+  'menu.select_all': '모두 선택',
+  'menu.rename': '이름 바꾸기',
+  'menu.delete': '삭제',
+  'menu.show_in_folder': '파일 탐색기에서 열기',
+  'menu.open': '열기',
+
+
+  // Tools
+  'tool.terminal': '터미널',
+  'tool.remote': '원격 터미널',
+  'library.agent_tools': 'Agent 도구',
+  'sentinel.protocol': '센티넬 프로토콜',
+  'tool.two_split': '독립 2분할',
+  'tool.three_split': '독립 3분할',
+  'tool.four_split': '독립 4분할',
+  'tool_config.command': '실행 명령',
+  'tool_config.extra_args': '추가 인수',
+  'tool_config.default_cwd': '실행 디렉터리',
+  'tool_config.history_path': '대화 기록 디렉터리',
+  'tool_config.reset': '재설정',
+  'tool_config.cancel': '취소',
+  'tool_config.save': '저장',
+
+  // Remote Terminal
+  'remote.title': '원격 터미널',
+  'remote.host': '호스트',
+  'remote.host_placeholder': '예: 192.168.1.100',
+  'remote.username': '사용자 이름',
+  'remote.password': '비밀번호',
+  'remote.connect': '연결',
+  'remote.connecting': '연결 중...',
+  'remote.connect_failed': '연결 실패',
+
+  'tab.new': '도구 선택',
+  'chat.no_records': '읽을 수 있는 대화 기록이 없습니다.',
+
+
+  // Task Board
+  'task.notes_placeholder': '메모 추가...',
+  'task.section.working': '진행 중',
+  'task.section.todo': '할 일',
+  'task.section.done': '완료',
+  'task.greeting.morning': '좋은 아침, 오늘 계획은?',
+  'task.greeting.afternoon': '안녕하세요, 남은 할 일이 있나요?',
+  'task.greeting.evening': '좋은 저녁, 뭔가 시작해볼까요?',
+  'task.tab.tasks': '작업 목록',
+  'task.tab.changes': '변경 기록',
+  'changes.empty': '아직 변경 사항이 없습니다.',
+  'diff.loading': '로딩 중…',
+  'diff.error': '차이 로드 실패',
+  'diff.no_changes': '베이스라인과 동일',
+  'diff.too_large': '파일이 너무 커서 인라인 차이를 표시하지 않음',
+  'diff.unchanged_lines': '⋯ 변경되지 않은 {count}줄',
+  'task.default_title': '새 작업',
+  'task.search_sessions': '세션 검색...',
+  'menu.no_recent': '최근 세션이 없습니다',
+  'task.messages': '메시지 {count}개',
+
+  // Actions
+  'action.resume_terminal': '이 세션 계속하기',
+
+  // Time
+  'time.just_now': '방금',
+  'time.today': '오늘',
+  'time.yesterday': '어제',
+  'time.days_ago': '{days}일 전',
+
+  // Session
+  'session.max': '동시에 최대 5개의 세션만 열 수 있습니다.',
+
+  // Theme Menu
+  'theme.section.color': '색상',
+  'theme.section.shape': '형태',
+  'theme.section.icons': '아이콘 스타일',
+  'theme.color.light': '라이트',
+  'theme.color.dark': '다크',
+  'theme.color.cappuccino': '코드 다크',
+  'theme.color.sakura': '사쿠라',
+  'theme.color.lavender': '라벤더',
+  'theme.color.mint': '민트',
+  'theme.color.obsidian': '옵시디언',
+  'theme.color.cobalt': '코발트',
+  'theme.color.moss': '이끼',
+  'theme.color.crimson': '크림슨',
+  'theme.color.sunset': '노을',
+  'theme.color.amber': '호박',
+  'theme.color.emerald': '에메랄드',
+  'theme.color.teal': '청록',
+  'theme.color.indigo': '인디고',
+  'theme.color.fuchsia': '푸시아',
+
+  // Gambit · 한 수
+  'gambit.title': '한 수',
+  'gambit.placeholder': '한 수를 고르는 중... (Ctrl+Enter 전송, Enter 줄바꿈, 이미지 붙여넣기)',
+  'gambit.send_failed_hint': '활성 세션을 먼저 여세요',
+  'gambit.send_empty_hint': '내용을 입력하거나 이미지를 붙여넣으세요 (Ctrl+V)',
+
+
+  'heatmap.title': '세션 {sessions}회 · 메시지 {messages}개',
+  'heatmap.title_empty': '아직 시작되지 않았어요 — AI와 대화하여 첫 칸을 채워보세요',
+  'heatmap.legend_less': '적음',
+  'heatmap.legend_more': '많음',
+  'heatmap.tooltip_some': '{date} · 메시지 {count}개',
+  'heatmap.tooltip_one': '{date} · 메시지 1개',
+  'heatmap.tooltip_none': '{date} · 활동 없음',
+
+  // Skills 패널 토글 토스트
+  'skills.toast.enabled': '활성화됨',
+  'skills.toast.disabled': '비활성화됨',
+
+} as const;
