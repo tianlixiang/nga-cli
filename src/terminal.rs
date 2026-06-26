@@ -356,6 +356,17 @@ pub const AGENT_PRESETS: &[AgentPreset] = &[
         token_format: Some(r"^ses_[A-Za-z0-9]{20,40}$"),
         prompt_markers: &["┃"],
     },
+    // NGA CLI — reads session history from ngagent.db (same Drizzle schema
+    // as OpenCode). Resume follows the same `--session <token>` convention.
+    AgentPreset {
+        tool_name: "nga",
+        resume_program: Some("ngagent"),
+        resume_args_before: &["--session"],
+        resume_args_after: &[],
+        session_id_pattern: None,
+        token_format: Some(r"^ses_[A-Za-z0-9]{20,40}$"),
+        prompt_markers: &["┃"],
+    },
     // Codex CLI resume: `codex resume <id>` is a positional subcommand,
     // not a `--resume` flag. Token is the rollout filename stem (UUID).
     AgentPreset {
@@ -1385,7 +1396,7 @@ mod tests {
 
     #[test]
     fn find_preset_known_tools() {
-        for tool in &["claude", "antigravity", "hermes"] {
+        for tool in &["claude", "antigravity", "hermes", "nga"] {
             assert!(find_preset(tool).is_some(), "preset not found for {tool}");
         }
     }

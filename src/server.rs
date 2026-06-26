@@ -1977,6 +1977,18 @@ fn read_opencode_session(session_id: String) -> Result<String, String> {
     Err("OpenCode session storage not found".to_string())
 }
 
+#[tauri::command]
+fn read_nga_session(session_token: String) -> Result<String, String> {
+    let home = dirs::home_dir().ok_or("Cannot determine home directory")?;
+    let nga_dir = nga_root(&home)
+        .ok_or("NGA history root not configured")?;
+    let db_path = nga_dir.join("ngagent.db");
+    if db_path.is_file() {
+        return read_opencode_sqlite_session(&db_path, &session_token);
+    }
+    Err("NGA session storage not found".to_string())
+}
+
 /// Resolve MiMo Code's SQLite db (Xiaomi's OpenCode fork — identical Drizzle
 /// schema). Primary path is `~/.local/share/mimocode/mimocode.db`, with the
 /// older/atypical `~/.config/mimocode/mimocode.db` as fallback. None when
@@ -2144,11 +2156,17 @@ fn parse_opencode_session(file_path: &std::path::Path, message_dir: &std::path::
     })
 }
 
-fn find_opencode_sessions(base_dir: std::path::PathBuf, db_name: &str, result: &mut Vec<SavedSession>) {
+fn find_opencode_sessions(
+    base_dir: std::path::PathBuf,
+    db_name: &str,
+    tool_id: &str,
+    default_title: &str,
+    result: &mut Vec<SavedSession>,
+) {
     // Prefer SQLite DB (current OpenCode format) over legacy JSON files
     let db_path = base_dir.join(db_name);
     if db_path.is_file() {
-        find_drizzle_sessions_sqlite(&db_path, "opencode", "OpenCode Session", result);
+        find_drizzle_sessions_sqlite(&db_path, tool_id, default_title, result);
         return;
     }
 
@@ -2564,7 +2582,7 @@ fn load_native_history_blocking() -> Result<Vec<SavedSession>, String> {
     // SavedSession objects directly.
     if let Some(home) = home.as_ref() {
         if let Some(opencode_dir) = opencode_root(home) {
-            find_opencode_sessions(opencode_dir, "opencode.db", &mut result);
+            find_opencode_sessions(opencode_dir, "opencode.db", "opencode", "OpenCode Session", &mut result);
         }
     }
 
@@ -2572,7 +2590,7 @@ fn load_native_history_blocking() -> Result<Vec<SavedSession>, String> {
     // same SQLite schema as OpenCode.
     if let Some(home) = home.as_ref() {
         if let Some(nga_dir) = nga_root(home) {
-            find_opencode_sessions(nga_dir, "ngagent.db", &mut result);
+            find_opencode_sessions(nga_dir, "ngagent.db", "nga", "NGA Session", &mut result);
         }
     }
 
@@ -3352,6 +3370,7 @@ pub fn start_ui() -> anyhow::Result<()> {
             get_message_heatmap,
             read_native_session,
             read_opencode_session,
+            read_nga_session,
             read_hermes_session,
             read_mimocode_session,
             check_network_port,

@@ -114,6 +114,9 @@ export const commands = {
   // MiMo Code (OpenCode fork) — same SQLite schema, read from mimocode.db.
   readMimocodeSession: (sessionToken: string) =>
     invoke<string>('read_mimocode_session', { sessionToken }),
+  // NGA CLI — reads from ngagent.db (same Drizzle schema as OpenCode).
+  readNgaSession: (sessionToken: string) =>
+    invoke<string>('read_nga_session', { sessionToken }),
   tierTerminalResume: (sessionId: string, savedSessionId: string, tool: string, sessionToken: string, cols: number, rows: number, cwd: string) =>
     invoke<void>('tier_terminal_resume', { sessionId, savedSessionId, tool, sessionToken, cols, rows, cwd }),
   checkNetworkPort: (host: string, port: number) => invoke<boolean>('check_network_port', { host, port }),

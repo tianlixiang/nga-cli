@@ -72,7 +72,9 @@ export function ChatReader({ sessionId }: { sessionId: string }) {
     // OpenCode); its file_path points at the shared db, so route it to the
     // SQLite reader rather than readNativeSession.
     const isMimocode = session.tool === 'mimocode' && !!session.session_token;
-    if (!isOpencode && !isHermesDb && !isMimocode && !session.file_path) {
+    // NGA CLI sessions from ngagent.db (same Drizzle schema as OpenCode).
+    const isNga = session.tool === 'nga' && !!session.session_token;
+    if (!isOpencode && !isHermesDb && !isMimocode && !isNga && !session.file_path) {
       setLoading(false);
       return;
     }
@@ -86,7 +88,9 @@ export function ChatReader({ sessionId }: { sessionId: string }) {
         ? commands.readHermesSession(session.session_token!)
         : isMimocode
           ? commands.readMimocodeSession(session.session_token!)
-          : commands.readNativeSession(session.file_path!);
+          : isNga
+            ? commands.readNgaSession(session.session_token!)
+            : commands.readNativeSession(session.file_path!);
 
     readPromise
       .then((raw) => {
