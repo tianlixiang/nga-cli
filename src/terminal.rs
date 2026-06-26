@@ -320,7 +320,7 @@ pub const AGENT_PRESETS: &[AgentPreset] = &[
     // does not echo the session id to stdout (verified live on 1.14.32),
     // so `session_id_pattern` is None — the resume token is sourced from
     // the existing OpenCode history reader in server.rs (which parses
-    // `~/.local/share/opencode/storage/session/<projectID>/*.json`),
+    // `~/.config/opencode/storage/session/<projectID>/*.json`),
     // not from PTY scraping. Prompt marker `┃` (U+2503 HEAVY VERTICAL)
     // is the left border of OpenCode's input box, persistently rendered
     // in idle state; combined with the >1.2s silence rule in the status
@@ -1458,7 +1458,7 @@ mod tests {
 
     #[test]
     fn opencode_token_valid_format() {
-        // Real session ids observed in `~/.local/share/opencode/storage/session/`
+        // Real session ids observed in `~/.config/opencode/storage/session/`
         // and reported by `opencode -s <id>` — all 26 alnum chars after `ses_`.
         assert!(token_matches("opencode", "ses_1d3161926ffeffCy3Y6l14Ezoy"));
         assert!(token_matches("opencode", "ses_3a54b4f8affeiVHxL6g6ykOVUv"));

@@ -11,10 +11,9 @@ pub static DESCRIPTOR: ToolDescriptor = ToolDescriptor {
     binary_name: "opencode",
     skill_dir_relative: Some(".config/opencode/skills"),
     has_hook_surface: true,
-    // ~/.local/share/opencode/storage/db.sqlite (+ legacy jsonl
-    // fallback) — see `find_opencode_sessions` for layout details.
+    // ~/.config/opencode/opencode.db — see `find_opencode_sessions` for layout.
     history_shape: Some(HistoryShape::OpenCodeMixed {
-        root_under_home: ".local/share/opencode",
+        root_under_home: ".config/opencode",
     }),
     default_args: &[],
 };
